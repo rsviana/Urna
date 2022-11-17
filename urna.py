@@ -82,112 +82,120 @@ def apuracaoPresidente():
 def votoGovernante():
     confirmaGov = True
     while confirmaGov:
-        votoGovernador = int(input("Governador: "))
-        if votoGovernador == 13:
-            print("Agnelo Silva")
-            confirmaGov = input(
-                "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
-            if confirmaGov.isnumeric():
-                print(
-                    "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
+        try:
+            votoGovernador = int(input("Governador: "))
+            if votoGovernador == 13:
+                print("Agnelo Silva")
+                confirmaGov = input(
+                    "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
+                if confirmaGov.isnumeric():
+                    print(
+                        "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
+                    continue
+                if confirmaGov == "s" or confirmaGov == "S":
+                    governo = governador(votoGovernador)
+                    print(governo)
+                    confirmaGov = False
+                    break
+
+            if votoGovernador == 44:
+                print("Ibaneis Rocha")
+                confirmaGov = input(
+                    "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
+                if confirmaGov.isnumeric():
+                    print(
+                        "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
+                    continue
+                if confirmaGov == "s" or confirmaGov == "S":
+                    governo = governador(votoGovernador)
+                    print(governo)
+                    confirmaGov = False
+                    break
+
+            if votoGovernador != 13 or votoGovernador != 22:
+                print("Voto Nulo!")
+                confirmaGov = input(
+                    "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
+                if confirmaGov.isnumeric():
+                    print(
+                        "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
+                    continue
+                if confirmaGov == "s" or confirmaGov == "S":
+                    governo = governador(governador)
+                    print(governo)
+                    confirmaGov = False
+                    break
+
+            elif confirmaGov != "s" or confirmaGov != "S":
+                print("Voce precisa confirmar seu voto!!!")
                 continue
-            if confirmaGov == "s" or confirmaGov == "S":
-                governo = governador(votoGovernador)
-                print(governo)
-                confirmaGov = False
-                break
-
-        if votoGovernador == 44:
-            print("Ibaneis Rocha")
-            confirmaGov = input(
-                "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
-            if confirmaGov.isnumeric():
-                print(
-                    "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
-                continue
-            if confirmaGov == "s" or confirmaGov == "S":
-                governo = governador(votoGovernador)
-                print(governo)
-                confirmaGov = False
-                break
-
-        if votoGovernador != 13 or votoGovernador != 22:
-            print("Voto Nulo!")
-            confirmaGov = input(
-                "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
-            if confirmaGov.isnumeric():
-                print(
-                    "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
-                continue
-            if confirmaGov == "s" or confirmaGov == "S":
-                governo = governador(governador)
-                print(governo)
-                confirmaGov = False
-                break
-
-        elif confirmaGov != "s" or confirmaGov != "S":
-            print("Voce precisa confirmar seu voto!!!")
-            continue
-
+        except ValueError:
+            print("Entre com um valor válido!")
+            continue    
 
 def votoPresidenciavel():
     confirmaPre = True
     while confirmaPre:
-        votoPresidente = int(input("PRESIDENTE: "))
-        if votoPresidente == 13:
-            print("Luiz Inácio Lula da Silva")
-            confirmaPre = input(
-                "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
-            if confirmaPre.isnumeric():
-                print(
-                    "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
-                continue
+        try:
+            votoPresidente = int(input("PRESIDENTE: "))
+            if votoPresidente == 13:
+                print("Luiz Inácio Lula da Silva")
+                confirmaPre = input(
+                    "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
+            # if confirmaPre.isnumeric():
+            #         print(
+            #             "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
+            #         continue
             if confirmaPre == "s" or confirmaPre == "S":
                 presidenciavel = presidente(votoPresidente)
                 print(presidenciavel)
                 confirmaPre = False
                 break
 
-        if votoPresidente == 22:
-            print("Jair Messias Bolsonaro")
-            confirmaPre = input(
-                "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
-            if confirmaPre.isnumeric():
-                print(
-                    "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
-                continue
+            if votoPresidente == 22:
+                print("Jair Messias Bolsonaro")
+                confirmaPre = input(
+                    "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
+                if confirmaPre.isnumeric():
+                    print(
+                        "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
+                    continue
+     
             if confirmaPre == "s" or confirmaPre == "S":
                 presidenciavel = presidente(votoPresidente)
                 print(presidenciavel)
                 confirmaPre = False
                 break
 
-        if votoPresidente == 3333:
-            PresidenteEleito = apuracaoPresidente()
-            print(PresidenteEleito)
-            print()
-            GovernadorEleito = apuracaoGovernador()
-            print(GovernadorEleito)
-            break
-
-        if votoPresidente != 13 or votoPresidente != 22:
-            print("Voto Nulo!")
-            confirmaPre = input(
-                "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
-            if confirmaPre.isnumeric():
-                print(
-                    "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
-                continue
-            if confirmaPre == "s" or confirmaPre == "S":
-                presidenciavel = presidente(votoPresidente)
-                print(presidenciavel)
-                confirmaPre = False
+            if votoPresidente == 3333:
+                PresidenteEleito = apuracaoPresidente()
+                print(PresidenteEleito)
+                print()
+                GovernadorEleito = apuracaoGovernador()
+                print(GovernadorEleito)
                 break
+          
 
-        elif confirmaPre != "s" or confirmaPre != "S":
-            print("Voce precisa confirmar seu voto!")
+            if votoPresidente != 13 or votoPresidente != 22:
+                print("Voto Nulo!")
+                confirmaPre = input(
+                    "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
+                if confirmaPre.isnumeric():
+                    print(
+                        "Por favor entre com o valor s[S] para confirmar ou n[N] para não confirmar")
+                    continue
+                if confirmaPre == "s" or confirmaPre == "S":
+                    presidenciavel = presidente(votoPresidente)
+                    print(presidenciavel)
+                    confirmaPre = False
+                    break
+
+            elif confirmaPre != "s" or confirmaPre != "S":
+                print("Voce precisa confirmar seu voto!")
+                continue
+        except ValueError:
+            print("Entre com um valor válido!")
             continue
-
 
 def presidente(voto):
     if voto == 13 or voto == 22:
