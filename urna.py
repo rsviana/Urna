@@ -221,6 +221,7 @@ def governador(voto):
         playsound('confirm.mp3')
         return "Voto Nulo Confirmado"
 
+
 if __name__ == "__main__":
     while True:
         print("\n" * os.get_terminal_size().lines)
