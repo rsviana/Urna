@@ -3,7 +3,7 @@ from playsound import playsound
 
 PRESIDENTE = []
 GOVERNADOR = []
-
+GOV = {}
 
 def apuracaoGovernador():
 
@@ -51,9 +51,9 @@ def apuracaoPresidente():
     print("\n" * os.get_terminal_size().lines)
 
     for votoPre in PRESIDENTE:
-        if votoPre == 13:
+        if votoPre == numPres:
             soma13Pres.append(votoPre)
-        elif votoPre == 22:
+        elif votoPre == numPres1:
             soma22.append(votoPre)
         else:
             SomaNuloPres.append(votoPre)
@@ -64,18 +64,18 @@ def apuracaoPresidente():
             +----------------------------------------+
             Total de votos: {len(PRESIDENTE)}
 
-            Lula: {len(soma13Pres)} votos
-            Bolsonaro {len(soma22)} votos
+            {pres}: {len(soma13Pres)} votos
+            {pres1} {len(soma22)} votos
 
             Total des votos nulos {len(SomaNuloPres)} votos
             """)
     if soma13Pres < soma22:
         print(f"""
-            Presidente eleito, Luiz Inacio Lula da Silva com {len(soma13Pres)} votos válidos!
+            Presidente eleito, {pres} com {len(soma13Pres)} votos válidos!
             """)
     if soma13Pres > soma22:
         print(f"""
-            Presidente eleito, Jair Messias Bolsonaro com {len(soma22)} votos válidos!
+            Presidente eleito, {pres1} com {len(soma22)} votos válidos!
             """)
 
 
@@ -138,8 +138,8 @@ def votoPresidenciavel():
     while confirmaPre:
         try:
             votoPresidente = int(input("PRESIDENTE: "))
-            if votoPresidente == 13:
-                print("Luiz Inácio Lula da Silva")
+            if votoPresidente == numPres:
+                print(pres)
                 confirmaPre = input(
                     "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
             # if confirmaPre.isnumeric():
@@ -152,8 +152,8 @@ def votoPresidenciavel():
                 confirmaPre = False
                 break
 
-            if votoPresidente == 22:
-                print("Jair Messias Bolsonaro")
+            if votoPresidente == numPres1:
+                print(pres1)
                 confirmaPre = input(
                     "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
                 if confirmaPre.isnumeric():
@@ -176,7 +176,7 @@ def votoPresidenciavel():
                 break
           
 
-            if votoPresidente != 13 or votoPresidente != 22:
+            if votoPresidente != numPres1 or votoPresidente != numPres:
                 print("Voto Nulo!")
                 confirmaPre = input(
                     "Confirma o voto [(S/s) - Sim | (N/n) - Não]? ")
@@ -198,7 +198,7 @@ def votoPresidenciavel():
             continue
 
 def presidente(voto):
-    if voto == 13 or voto == 22:
+    if voto == numPres or voto == numPres1:
         PRESIDENTE.append(voto)
         playsound('confirm.mp3')
         return ("""
@@ -229,13 +229,50 @@ def governador(voto):
         playsound('confirm.mp3')
         return "Voto Nulo Confirmado"
 
-
 if __name__ == "__main__":
+    print("\n" * os.get_terminal_size().lines)
+    print(f"""
+                                    Eleiçoes 2022
+                          Cadastro de Estados e Canditatos
+
+    """)
+
+    UF = input("Qual o seu estado: ")
+    print()
+    # Configuração Presidente
+    pres = input("Nome do PRIMEIRO candidato a Presidência da República: ")
+    numPres = int(input(f"Qual o numero do partido do canditato {pres}: "))
+    print("\n" * os.get_terminal_size().lines)
+    pres1 = input("Nome do SEGUNDO candidato a Presidência da República: ")
+    numPres1 = int(input(f"Qual o numero do partido do canditato {pres1}: "))
+    
+    while numPres == numPres1:
+            print("\n" * os.get_terminal_size().lines)    
+            print("ATENÇÃO: Corrija os campos...")
+            print()
+            pres1 = input("Nome do SEGUNDO candidato a Presidência da República: ")
+            numPres1 = int(input(f"Qual o numero do partido do canditato {pres1}: "))
+    
+    # Configuração Governador
+
+    cadGov = True
+    while cadGov:
+        print("\n" * os.get_terminal_size().lines)  
+        nome = input("Entre com o nome do governador: ")
+        numero = int(input(f"Entre com o numero do governador: "))
+        GOV[numero] = nome
+        cad = input("Cadastra o proximo? [s/N]")
+        if cad == "s" or cad == "S":
+            cadGov = True
+        else:
+            cadGov = False
+        
     while True:
+        
         print("\n" * os.get_terminal_size().lines)
-        print("""
+        print(f"""
                                         Eleiçoes 2022
-            TRE - Brasil - Votos Presidente e Governador do Estado do Distrito Federal
+            TRE - Brasil - Votos Presidente e Governador do Estado do {UF}
 
             """)
 
